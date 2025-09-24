@@ -23,6 +23,7 @@
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-dark);
             color: var(--text-light);
+            overflow-x: hidden; /* Prevents horizontal scroll from misplaced elements */
         }
 
         /* Custom styles for animations */
@@ -73,7 +74,7 @@
             transform: translateY(0);
         }
 
-        /* Continuous bounce effect for "planet" images */
+        /* Continuous bounce effect for "planet" images and back-to-top button */
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% {
                 transform: translateY(0);
@@ -165,19 +166,19 @@
                 <img
                     src="Images/team11.jpg"
                     alt="Your professional photo"
-                    class="rounded-circle border border-5 border-info shadow glow-on-hover"
-                    style="width: 400px; height: 400px; object-fit: cover;"
+                    class="rounded-circle border border-5 border-info shadow glow-on-hover img-fluid"
+                    style="max-width: 200px; height: auto; object-fit: cover;"
                 />
 
                 <!-- Smaller "Planet" Images -->
-                <img src="Images/team111.jpg" alt="Small photo 1" class="rounded-circle position-absolute continuous-bounce" style="width: 60px; height: 60px; top: -20px; left: 15%; object-fit: cover; border: 2px solid var(--color-info); animation-delay: 0s;" />
-                <img src="Images/team11111.jpg" alt="Small photo 2" class="rounded-circle position-absolute continuous-bounce" style="width: 75px; height: 75px; top: 50%; left: -20px; transform: translateY(-50%); object-fit: cover; border: 2px solid var(--color-info); animation-delay: 0.5s;" />
-                <img src="Images/team11111.jpg" alt="Small photo 3" class="rounded-circle position-absolute continuous-bounce" style="width: 50px; height: 50px; bottom: -20px; left: 25%; object-fit: cover; border: 2px solid var(--color-info); animation-delay: 1s;" />
-                <img src="Images/team1.jpg" alt="Small photo 4" class="rounded-circle position-absolute continuous-bounce" style="width: 80px; height: 80px; top: 10%; right: 10%; object-fit: cover; border: 2px solid var(--color-info); animation-delay: 1.5s;" />
-                <img src="Images/teaam11111.jpg" alt="Small photo 5" class="rounded-circle position-absolute continuous-bounce" style="width: 65px; height: 65px; top: 60%; right: -20px; object-fit: cover; border: 2px solid var(--color-info); animation-delay: 2s;" />
+                <img src="Images/team111.jpg" alt="Small photo 1" class="rounded-circle position-absolute continuous-bounce img-fluid" style="width: 10%; max-width: 60px; top: -10%; left: 15%; object-fit: cover; border: 2px solid var(--color-info); animation-delay: 0s;" />
+                <img src="Images/team11.jpg" alt="Small photo 2" class="rounded-circle position-absolute continuous-bounce img-fluid" style="width: 12%; max-width: 75px; top: 50%; left: -5%; transform: translateY(-50%); object-fit: cover; border: 2px solid var(--color-info); animation-delay: 0.5s;" />
+                <img src="Images/team1.jpg" alt="Small photo 3" class="rounded-circle position-absolute continuous-bounce img-fluid" style="width: 8%; max-width: 50px; bottom: -10%; left: 25%; object-fit: cover; border: 2px solid var(--color-info); animation-delay: 1s;" />
+                <img src="Images/team11111.jpg" alt="Small photo 4" class="rounded-circle position-absolute continuous-bounce img-fluid" style="width: 13%; max-width: 80px; top: 10%; right: 10%; object-fit: cover; border: 2px solid var(--color-info); animation-delay: 1.5s;" />
+                <img src="Images/teaam11111.jpg" alt="Small photo 5" class="rounded-circle position-absolute continuous-bounce img-fluid" style="width: 10%; max-width: 65px; top: 60%; right: -5%; object-fit: cover; border: 2px solid var(--color-info); animation-delay: 2s;" />
 
                 <h1 class="display-3 fw-bolder mt-5 mb-2">
-                    <span class="text-info">Your Name</span>
+                    <span class="text-info">Eng Akia Samuel</span>
                 </h1>
                 <h2 class="fs-3 fw-semibold text-secondary mb-2">Software Developer & Educator</h2>
                 <p class="fs-5 text-white-50 mx-auto mb-4" style="max-width: 700px;">
@@ -199,7 +200,7 @@
             <div class="bg-dark p-4 p-md-5 rounded-3 shadow">
                 <h2 class="fs-2 fw-bold mb-4 text-center text-info">About Me</h2>
                 <div class="d-flex flex-column flex-md-row align-items-center gap-4">
-                    <img src="Images/team111.jpg" alt="About Me photo" class="rounded-circle border border-info" style="width: 150px; height: 150px; object-fit: cover;">
+                    <img src="Images/team111.jpg" alt="About Me photo" class="rounded-circle border border-info img-fluid" style="max-width: 150px; height: auto; object-fit: cover;">
                     <p class="text-white-50 fs-5 mb-0">
                         I'm an aspiring Software Developer and Educator currently pursuing my M.Sc. in Computer Engineering at NAHPI. My passion lies in building robust, secure applications for both web and mobile platforms. I enjoy tackling complex challenges and sharing my knowledge with others, whether it's through teaching or mentoring. Beyond coding, I'm deeply interested in the fields of AI, Cybersecurity, and Digital Marketing. I also have a creative side, with skills in music tutoring and a keen interest in exploring financial markets like Forex and Crypto.
                     </p>
@@ -443,7 +444,7 @@
     </main>
 
     <footer class="py-4 text-center text-white-50" style="background-color: var(--bg-dark);">
-        <p>&copy; 2024 Sammi-Drumz. All Rights Reserved.</p>
+        <p>&copy; 2024 Your Name. All Rights Reserved.</p>
     </footer>
 
     <!-- Back to top button -->
@@ -490,6 +491,19 @@
                 window.scrollTo({
                     top: 0,
                     behavior: "smooth"
+                });
+            });
+
+            // Logic to close the hamburger menu on nav item click
+            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+            const navbarCollapse = document.getElementById('navbarNav');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navbarCollapse.classList.contains('show')) {
+                        const bsCollapse = new bootstrap.Collapse(navbarCollapse, { toggle: false });
+                        bsCollapse.hide();
+                    }
                 });
             });
         });
